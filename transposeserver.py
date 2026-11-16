@@ -13,7 +13,14 @@ parts = list(map(int, data.split()))
 rows, cols = parts[0], parts[1]
 elements = parts[2:]
 
-matrix = [elements[i * cols:(i + 1) * cols] for i in range(rows)]
+matrix = []
+k = 0
+for i in range(rows):
+    row = []
+    for j in range(cols):
+        row.append(elements[k])
+        k = k + 1
+    matrix.append(row)
 
 # Transpose computation
 transpose = [[matrix[i][j] for i in range(rows)] for j in range(cols)]
