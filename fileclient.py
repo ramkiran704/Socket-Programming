@@ -1,22 +1,9 @@
 import socket
-
-HOST = "127.0.0.1"
-PORT = 5000
-
-client = socket.socket(
-    socket.AF_INET,
-    socket.SOCK_STREAM
-)
-
-client.connect((HOST, PORT))
-
-filename = input("Enter file name: ")
-
+client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+client.connect(('localhost', 12345))
+filename = input("Enter filename to request: ")
 client.send(filename.encode())
-
-data = client.recv(4096)
-
-print("\nResponse from server:")
-print(data.decode())
-
+response = client.recv(4096).decode()
+print("\nServer Response:")
+print(response)
 client.close()
